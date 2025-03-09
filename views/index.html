@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Eventos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>Gerenciar Eventos</header>
+    <div class="container">
+
+        <div id="map" style="height: 400px; width: 100%;"></div>
+
+        <div class="button-container">
+            <button class="new" onclick="abrirModal('modal-cadastro')">Criar Novo Evento</button>
+            <button class="view" onclick="mostrarLista()">Visualizar Eventos</button>
+            <!-- <a href="/graficos">
+                <button class="view-graficos">Abrir Gráficos</button>
+            </a> -->
+        </div>
+
+        <div id="lista-eventos" style="display: none;">
+            <table id="tabela-eventos">
+                <thead>
+                    <tr>
+                        <th>TÍTULO</th>
+                        <th>DESCRIÇÃO</th>
+                        <th>DATA</th>
+                        <th>HORA</th>
+                        <th>PÚBLICO-ALVO</th>
+                        <th>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os eventos serão exibidos aqui -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div class="modal" id="modal-cadastro">
+        <div class="modal-content">
+            <h2>Novo Evento</h2>
+            <form id="form-cadastro">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" required></textarea>
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required>
+                <label for="publico-alvo">Público-Alvo</label>
+                <input type="text" id="publico-alvo" name="publico-alvo">
+                <label for="localizacao">Localização:</label>
+                <input type="text" id="localizacao" name="localizacao">
+                <!-- Buscar por localização -->
+                <button type="button" id="buscar">Buscar</button><br>
+                <input type="number" id="latitude" placeholder="Latitude" step="any"><br>
+                <input type="number" id="longitude" placeholder="Longitude" step="any"><br>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <button onclick="fecharModal('modal-cadastro')">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div class="modal" id="modal-editar" style="display: none;">
+        <div class="modal-content">
+            <h2>Atualizar Evento</h2>
+            <form id="form-editar">
+                <label for="edit-titulo">Título</label>
+                <input type="text" id="edit-titulo" name="edit-titulo" required>
+    
+                <label for="edit-descricao">Descrição</label>
+                <textarea id="edit-descricao" name="edit-descricao" required></textarea>
+    
+                <label for="edit-data">Data</label>
+                <input type="date" id="edit-data" name="edit-data" required>
+    
+                <label for="edit-hora">Hora</label>
+                <input type="time" id="edit-hora" name="edit-hora" required>
+
+                <label for="publico-alvo">Público-Alvo</label>
+                <input type="text" id="edit-publico-alvo" name="edit-publico-alvo">
+    
+                <label for="edit-localizacao">Localização</label>
+                <input type="text" id="edit-localizacao" name="edit-localizacao" placeholder="Buscar">
+
+                <button type="button" id="buscar-edit">Buscar</button>
+                <input type="number" id="edit-latitude" placeholder="Latitude" step="any">
+                <input type="number" id="edit-longitude" placeholder="Longitude" step="any">
+
+                <button type="submit">Salvar</button>
+                <button type="button" onclick="fecharModal('modal-editar')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="mapa.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

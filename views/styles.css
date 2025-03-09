@@ -1,0 +1,174 @@
+body {
+    font-family: Jost, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+header {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container {
+    margin: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button.new {
+    background-color: #28a745;
+    color: white;
+}
+
+.button-container button.view {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-container button.view-graficos {
+    background-color: #0baf94;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th{
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #9d2bbc;
+    color: #f9f9f9;
+}
+
+td{
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd ;
+    border-bottom: 2px solid #000;
+}
+
+.actions button {
+    width: 100%;
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.actions button.edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.actions button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.actions button.map {
+    background-color: #007bff;
+    color: white;
+}
+
+.actions button.distancia {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    background: white; /* Fundo do modal */
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+
+}
+
+button{
+    cursor: pointer;
+    transition: transform 0.3s ease; 
+}
+button:hover {
+    transform: scale(1.1);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    /* width: 90%; */
+    max-width: 400px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    /* margin: 10px 0 5px; */
+}
+
+.modal-content input, .modal-content textarea, .modal-content button {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    margin: 20px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
