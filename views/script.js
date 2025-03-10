@@ -3,6 +3,7 @@ const API_URL = '/eventos';
 const cadastrar = document.querySelector('#form-cadastro');
 const geocodeUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=';
 let mapMarker = null;
+const searchInput = document.getElementById('search');
 
 // Buscar localização usando Nominatim
 document.getElementById('buscar').addEventListener('click', () => {
@@ -31,6 +32,51 @@ document.getElementById('buscar-edit').addEventListener('click', () => {
                 alert('Localização não encontrada!');
             }
         });
+});
+
+// Função de busca evento por título
+searchInput.addEventListener('input', async () => {
+    const searchTerm = searchInput.value;
+    try {
+        const response = await fetch(API_URL);
+        const eventos = await response.json();
+
+        const filteredEventos = eventos.filter(evento => {
+            return evento.titulo.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+        const tabelaBody = document.querySelector('#tabela-eventos tbody'); 
+        const tituloContainer = document.querySelector('#titulo-evento'); // Div para exibir o título
+
+        if (tabelaBody) {
+            tabelaBody.innerHTML = '';
+            if(tabelaBody.style.display === 'none') {
+                tabelaBody.style.display = 'block';
+            }
+
+            filteredEventos.forEach(evento => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${evento.titulo}</td>
+                    <td>${evento.descricao}</td>
+                    <td>${new Date(evento.data).toLocaleDateString()}</td>
+                    <td>${evento.hora}</td>
+                    <td>${evento.publico_alvo}</td>
+                    <td class="actions">
+                        <button class="map" onclick="verNoMapa('${evento._id}')">Local</button>
+                        <button class="edit" onclick="abrirEditarEvento('${evento._id}')">Editar</button>
+                        <button class="delete" onclick="excluirEvento('${evento._id}')">Excluir</button>
+                        <button class="distancia" onclick="verDistancia(${evento.localizacao.coordinates[1]}, ${evento.localizacao.coordinates[0]})">Distância</button>
+                    </td>
+                `;
+                tabelaBody.appendChild(row);
+            });
+        }
+        verNoMapa(filteredEventos[0]._id);
+
+    } catch (error) {
+        console.error('Erro ao buscar eventos:', error);
+    }
 });
 
 async function listarEventos() {
